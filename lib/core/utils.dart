@@ -5,7 +5,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 final dio = Dio(
   BaseOptions(
-    baseUrl: "http://192.168.0.163:8080", // 서버 IP:PORT 입력
+    baseUrl: "http://192.168.0.86:8080", // 서버 IP:PORT 입력
     contentType: "application/json; charset=utf-8",
   ),
 );
