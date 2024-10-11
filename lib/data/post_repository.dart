@@ -2,6 +2,7 @@ import 'package:blog/core/utils.dart';
 import 'package:dio/dio.dart';
 
 class PostRepository {
+
   Future<List<dynamic>> findAll() async {
     //1. 통신 -> response [header, body]
     Response response = await dio.get("/api/post");

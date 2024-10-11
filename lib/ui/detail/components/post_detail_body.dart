@@ -13,24 +13,29 @@ class PostDetailBody extends ConsumerWidget {
 
     PostDetailModel? model = ref.watch(postDetailProvider(id));
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              child: Icon(CupertinoIcons.trash_fill),
-              onPressed: (){},
+    if(model == null){
+      return CircularProgressIndicator();
+    }else{
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton(
+                child: Icon(CupertinoIcons.trash_fill),
+                onPressed: (){},
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          Text("id : 1", style: TextStyle(fontSize: 20)),
-          Text("title : 제목입니다."),
-          Text("content : 내용입니다."),
-          Text("createdAt : 2024-08-01"),
-        ],
-      ),
-    );
+            SizedBox(height: 10),
+            Text("id : ${model.id}", style: TextStyle(fontSize: 20)),
+            Text("title : ${model.title}."),
+            Text("content : ${model.content}"),
+            Text("createdAt : ${model.createdAt}"),
+            Text("updatedAt : ${model.updatedAt}"),
+          ],
+        ),
+      );
+    }
   }
 }
