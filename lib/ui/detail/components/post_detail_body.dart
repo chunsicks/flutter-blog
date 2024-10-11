@@ -1,11 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PostDetailBody extends StatelessWidget {
+import '../post_detail_vm.dart';
 
+class PostDetailBody extends ConsumerWidget {
+  int id;
+  PostDetailBody(this.id);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    PostDetailModel? model = ref.watch(postDetailProvider(id));
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
