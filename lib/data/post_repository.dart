@@ -3,6 +3,10 @@ import 'package:dio/dio.dart';
 
 class PostRepository {
 
+  Future<void> deleteById(int id) async {
+    await dio.delete("/api/post/$id");
+  }
+
   Future<List<dynamic>> findAll() async {
     //1. 통신 -> response [header, body]
     Response response = await dio.get("/api/post");
@@ -30,5 +34,22 @@ class PostRepository {
 
     //이거는 list의 Map타입
     return responseBody;
+  }
+
+  Future<Map<String, dynamic>> save(String title, String content) async {
+    //1. 통신 -> response [header, body]
+    Response response = await dio.post("/api/post",data: {
+      "title":title,
+      "content":content
+    });
+
+    //이 바디는 map타입이라
+    //2. body 부분 리턴
+    //body 부분이 컬렉션이면(json array) List<dynamic>으로 받기
+    //body 부분이 json이면 Map<String, dynamic>으로 받기
+    Map<String, dynamic> responseBody = response.data["body"];
+
+    //이거는 list의 Map타입
+    return responseBody;//{"id":21, "title":"값"}
   }
 }
