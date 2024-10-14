@@ -48,9 +48,9 @@ class PostListVM extends StateNotifier<PostListModel?>{
 
     await PostRepository().deleteById(id);
     PostListModel model = state!;
-    List<_Post> newPost = model.posts.where((e) => e.id ==id).toList();
-    //3. 상태 갱신   지금은 상태 아직 안됨  상태는 api문서 보고 만들면 된다!
-    state = PostListModel(newPost); // 이게 깊은 복사( 기존 데이터를 건드리지 않는다)
+    List<_Post> newPost = model.posts.where((e) => e.id !=id).toList();
+    state = PostListModel(newPost);
+    Navigator.pop(mContext);
   }
 }
 
